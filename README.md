@@ -1,2 +1,2 @@
-# AudioScrambler
-A tool that cuts up an audio file and puts it back together again randomly. Akin to the William S Burroughs Cutup Method
+# Roomverb Simulation
+A tool imports multiple mono wav files, places them in a 3D room and simulates the stereo reverb.
