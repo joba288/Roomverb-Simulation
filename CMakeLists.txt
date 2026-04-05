@@ -7,8 +7,13 @@ set(CMAKE_C_EXTENSIONS OFF)
 
 
 add_executable(${PROJECT_NAME}
-    src/main.c
-)
+src/main.c )
+
+add_subdirectory(vendor/cglm EXCLUDE_FROM_ALL)
+target_link_libraries(RoomverbSimulation PRIVATE cglm_headers)
+
+
+
 
 #target_include_directories(${PROJECT_NAME} PRIVATE vendor/ffmpeg/include)
 #target_link_directories(${PROJECT_NAME} PRIVATE vendor/ffmpeg/lib)
