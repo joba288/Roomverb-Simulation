@@ -96,7 +96,7 @@ int main()
 	Room room = { 0 };
 	room.listener = &listener;
 
-	generate_room(&room, 20.0f, 200.0f, 20.0f);
+	generate_room(&room, 20.0f, 20.0f, 20.0f);
 
 	srand(0);
 
