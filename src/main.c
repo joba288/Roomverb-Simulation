@@ -1752,9 +1752,33 @@ cleanup:
 
 
 
-void convolute_stereo(AudioBuffer* audio, AudioBuffer* ir, AudioBuffer* dest)
+void convolute_buffer(AudioBuffer* audio, AudioBuffer* ir, AudioBuffer* dest)
 {
-	
+	int output_len = audio->sampleCount + ir->sampleCount - 1;
+
+	dest->sampleRate = audio->sampleRate;
+	dest->sampleCount = output_len;
+
+	dest->left = calloc(output_len, sizeof(float));
+	dest->right = calloc(output_len, sizeof(float));
+
+	//left
+	for (int n = 0; n < audio->sampleCount; n++)
+	{
+		for (int k = 0; k < ir->sampleCount; k++)
+		{
+			dest->left[n + k] += audio->left[n] * ir->left[k];
+		}
+	}
+
+	//right
+	for (int n = 0; n < audio->sampleCount; n++)
+	{
+		for (int k = 0; k < ir->sampleCount; k++)
+		{
+			dest->right[n + k] += audio->right[n] * ir->right[k];
+		}
+	}
 	
 
 }
