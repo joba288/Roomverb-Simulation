@@ -1,20 +1,61 @@
 # Roomverb Simulation
-A tool imports multiple mono wav files, places them in a 3D room and simulates the stereo reverb.
 
-## Build (Cmake)
-### Windows
-#### 1. Generate the Visual Studio Project
+Application for simulating room acoustics and applying the resulting reverb to multiple audio files. 
+Uses ray-based sound propagation to estimate stereo impulse responses, then FFT-convolves mulitple source audio files with those responses to produce a stereo WAV output.
 
-From project root:
+The application is written in **C**, with a 3D interface for arranging sound sources, and positioning a listener.
+
+## Usage
+
+1.  Launch Roomverb.
+2.  Select an existing sound source or use **+** to add another source
+    and choose a WAV file.
+3.  Position the sources and listener in the 3D scene using the
+    selection and transform controls.
+4.  Click **Render**.
+5.  Choose a destination and filename in the save dialog.
+6.  Wait for raycasting, convolution, and mixing to complete. The
+    application writes the resulting WAV file to the selected location.
+
+### Controls
 ```
-cmake -B build -G "Visual Studio 17 2022"
+  Control             Action
+  ------------------- ----------------------------------------------
+  Left mouse button   Select an object
+  `G`                 Translation gizmo
+  `R`                 Rotation gizmo when the listener is selected
+  `S`                 Scale gizmo
+  `+`                 Add a sound source
+  Browse button       Select a source audio file
+  Render button       Process sources and save the mixed WAV
 ```
-#### 2. Open the Solution
+Camera navigation uses an implementation of the Blender-style camera in raylib.
+
+## Technologies
 ```
-build/TetrisRaylib.sln
+  Component                     Technology
+  ----------------------------- -----------------------------
+  Language                      C
+  3D graphics and windowing     raylib
+  GUI                           raygui
+  Transform gizmos              raygizmo
+  Camera controls               raylib-blender-camera
+  Audio decoding and encoding   FFmpeg libraries
+  Parallel processing           OpenMP
+  Native file dialogs           Native File Dialog (NFD)
 ```
-#### 3. Build the project and run
+## Project structure
+
+``` text
+main.c             Application lifecycle, input handling and render orchestration
+roomverb.c / .h     Room, listener and sound-source setup
+raytracer.c / .h    Ray propagation, intersections and impulse recording
+audio.c / .h        Audio import, impulse conversion, convolution, mixing and export
+ui.c / .h           GUI, scene drawing and selection
 ```
-Ctrl + Shift + B
-F5
-```
+
+## Planned improvements
+
+- Improve control over attributes affecting the simulation, like room size, wall absorption etc
+- Improve user-interface
+- Improvements to the acoustics simulation, to get closer to a more realistic final product.
