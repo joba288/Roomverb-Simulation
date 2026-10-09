@@ -54,6 +54,27 @@ audio.c / .h        Audio import, impulse conversion, convolution, mixing and ex
 ui.c / .h           GUI, scene drawing and selection
 ```
 
+## Building
+### Windows
+Clone the repository:
+```
+git clone https://github.com/joba288/Roomverb-Simulation.git
+cd Roomverb-Simulation
+```
+Create a build directory:
+```
+mkdir build
+cd build
+```
+Configure the project:
+```
+cmake ..
+```
+Build:
+```
+cmake --build .
+```
+
 ## Planned improvements
 
 - Improve control over attributes affecting the simulation, like room size, wall absorption etc
