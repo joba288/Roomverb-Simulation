@@ -29,7 +29,8 @@ The application is written in **C**, with a 3D interface for arranging sound sou
   Browse button       Select a source audio file
   Render button       Process sources and save the mixed WAV
 ```
-Camera navigation uses an implementation of the Blender-style camera in raylib.
+Camera navigation uses an implementation of the Blender-style camera in raylib:
+https://github.com/grplyler/raylib-blender-camera
 
 ## Technologies
 ```
