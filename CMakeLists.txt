@@ -8,7 +8,7 @@ set(CMAKE_C_EXTENSIONS OFF)
 
 
 add_executable(${PROJECT_NAME}
-src/main.c )
+src/main.c  "src/raytracer.c" "src/audio.c" "src/audio.h" "src/ui.c" "src/roomverb.c")
 
 set(RESOURCE_DIR ${CMAKE_SOURCE_DIR}/resources)
 
@@ -110,10 +110,7 @@ target_link_directories(${PROJECT_NAME}
 # openmp
 find_package(OpenMP REQUIRED)
 
-target_compile_definitions(${PROJECT_NAME}
-    PRIVATE
-    RAYGUI_IMPLEMENTATION
-)
+
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
